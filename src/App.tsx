@@ -13,9 +13,6 @@ import {NewComponents} from "./Components/NewComponents";
 
 
 export type filterType = 'all' | 'Dollars' | 'RUBLS'
-
-
-
 function App() {
 
 
@@ -46,9 +43,7 @@ const [filter, setFilter] = useState<filterType>('all')
     }
     return (
         <>
-            <NewComponents  money={currentMoney}
-            a={onClickFilterHandler}
-            />
+            <NewComponents  money={currentMoney} filterT={onClickFilterHandler} />
             {/*<ul>*/}
             {/*    {currentMoney.map(m => {*/}
             {/*        return (*/}

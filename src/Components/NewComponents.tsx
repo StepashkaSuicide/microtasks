@@ -4,10 +4,8 @@ import {filterType} from "../App";
 
 type arrMoneyType = {
     money: Array<moneyType>
-    a: (name: filterType)=>void
+    filterT: (name: filterType)=>void
 }
-
-
 type moneyType = {
     banknots: string
     value: number
@@ -34,9 +32,9 @@ export const NewComponents = (props: arrMoneyType) => {
                     )
                 })}
             </ul>
-            <button onClick={()=>props.a('all')}>all</button>
-            <button onClick={()=>props.a('RUBLS')}>RUBLS</button>
-            <button onClick={()=>props.a('Dollars')}>Dollars</button>
+            <button onClick={()=>props.filterT('all')}>all</button>
+            <button onClick={()=>props.filterT('RUBLS')}>RUBLS</button>
+            <button onClick={()=>props.filterT('Dollars')}>Dollars</button>
         </>
     );
 };

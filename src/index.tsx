@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TaskTwo from "./Second/TaskTwo";
+import {Solo} from "./Second/Solo";
+import {Three} from "./Second/Three";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     {/*<App />*/}
-<TaskTwo/>
+{/*<TaskTwo/>*/}
+<Solo/>
+<Three/>
   </React.StrictMode>
 );
 

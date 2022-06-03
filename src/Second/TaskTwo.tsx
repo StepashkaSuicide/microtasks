@@ -12,7 +12,7 @@ function TaskTwo() {
 
 
     let [title, setTitle] = useState('')
-    console.log(title)
+
 
     const addMessage = (title: string) => {
         let newMessage = {message: title}

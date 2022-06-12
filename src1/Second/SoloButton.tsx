@@ -1,22 +1,43 @@
 import React from 'react';
 
-type SoloButtonType = {
+type ButtonType = {
     name: string
     callBack: () => void
 }
 
 
-export const SoloButton = (props: SoloButtonType) => {
 
+export const SoloButton = (props: ButtonType) => {
 
-    const onClickHandler = () => {
-        props.callBack()
-    }
-
+const click = ()=> {
+    props.callBack()
+}
     return (
-        <button onClick={onClickHandler}>{props.name}</button>
+        <button onClick={click}>{props.name}</button>
     );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

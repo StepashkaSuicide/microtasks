@@ -1,21 +1,44 @@
 import React, {ChangeEvent} from 'react';
 
-type SoloInputType = {
+type InputType ={
     title: string
-    setTitle: (title: string) => void
+    setTitle: (title: string)=> void
 }
 
 
-export const SoloInput = (props: SoloInputType) => {
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+export const SoloInput = (props: InputType) => {
+
+    const change = (e: ChangeEvent<HTMLInputElement>) => {
         props.setTitle(e.currentTarget.value)
     }
 
     return (
-        <input onChange={onChangeHandler}/>
+        <input value={props.title} onChange={change}/>
     );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

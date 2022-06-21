@@ -1,7 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
 import {Button} from './component/Button';
-import {Input} from './component/Input';
 
 type TaskType = {
     id: string
@@ -47,6 +46,8 @@ export function Todolist(props: PropsType) {
     const onAllClickHandler = () => props.changeFilter("all");
     const onActiveClickHandler = () => props.changeFilter("active");
     const onCompletedClickHandler = () => props.changeFilter("completed");
+
+
     const checkBoxHandler = (tID: string, e: ChangeEvent<HTMLInputElement>) => {
         props.checkBoxCallBack(tID, e.currentTarget.checked)
     }
@@ -71,7 +72,7 @@ export function Todolist(props: PropsType) {
             {
                 props.tasks.map(t => {
                     return <li key={t.id}>
-                        <Input callBack={checkBoxHandler} checked={t.isDone}  type={'checkbox'}/>
+                        <input checked={t.isDone} onChange={(e)=>checkBoxHandler(t.id, e)}   type={'checkbox'}/>
                         {/*<input type="checkbox" checked={t.isDone} onChange={(e)=>checkBoxHandler(t.id, e)}/>*/}
                         <span>{t.title}</span>
                         <Button  name={'XX'} callBack={()=> onClickHandler(t.id)}/>

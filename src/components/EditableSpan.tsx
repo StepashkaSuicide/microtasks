@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 
 
+
 type EditableSpanType = {
     title: string
     callBack: (newTitle: string)=> void
@@ -8,29 +9,62 @@ type EditableSpanType = {
 
 export const EditableSpan = (props: EditableSpanType) => {
 
-    const [edit, setEdit] = useState(false)
     const [newTitle, setNewTitle] = useState(props.title)
+    const [edit, setEdit] = useState(false)
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(e.currentTarget.value)
     }
 
-    const addTask = () => {
-          if (newTitle !== "") {
-              props.callBack(newTitle);
-              // setTitle("");
-          }
-     }
-
-
-    const changeEditHandler = () => {
-        setEdit(!edit)
-        addTask()
+    const addTitle = () => {
+        if (newTitle !== "") {
+            props.callBack(newTitle);
+        }
     }
-
+    const onDoubleClickHandler = ()=> {
+        setEdit(!edit)
+        addTitle()
+    }
     return (
         edit
-            ? <input onChange={onChangeHandler} autoFocus onBlur={changeEditHandler} value={newTitle}/>
-            : <span onDoubleClick={changeEditHandler}>{props.title}</span>
-    );
-};
+            ? <input  onChange={onChangeHandler} autoFocus onBlur={onDoubleClickHandler}   value={newTitle}/>
+            : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
+
+    )
+}
+
+//
+// import React, {ChangeEvent, useState} from 'react';
+//
+//
+// type EditableSpanPropsType = {
+//     title: string
+//     callBack:(newTitle:string)=>void
+// }
+//
+// export const EditableSpan = (props: EditableSpanPropsType) => {
+//     const [edit, setEdit] = useState(false)
+//     let [newTitle, setNewTitle] = useState(props.title)
+//     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+//         setNewTitle(e.currentTarget.value)
+//     }
+//     const addTitle = () => {
+//         if (newTitle !== "") {
+//             props.callBack(newTitle);
+//         }
+//     }
+//
+//
+//
+//     const onDoubleClickHandler = () => {
+//         setEdit(!edit)
+//         addTitle()
+//     }
+//
+//     return (
+//         edit
+//             ? <input autoFocus onBlur={onDoubleClickHandler} value={newTitle} onChange={onChangeHandler}/>
+//             : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
+//
+//     );
+// };

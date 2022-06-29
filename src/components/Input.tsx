@@ -1,14 +1,26 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 
-type InputType = {
-    callBack: (newTitle: string)=> void
-
+type InputPropsType = {
+    callBack: (title: string)=>void
 }
 
-export const Input = (props: InputType) => {
-    let [title, setTitle] = useState("")
-    let [error, setError] = useState<string | null>(null)
+
+
+export const Input = (props: InputPropsType) => {
+
+    const [title, setTitle] = useState("")
+    const [error, setError] = useState<string | null>(null)
+
+    const addTask = () => {
+        let newTitle = title.trim();
+        if (newTitle !== "") {
+            props.callBack(newTitle);
+            setTitle("");
+        } else {
+            setError("Title is required");
+        }
+    }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
@@ -21,15 +33,6 @@ export const Input = (props: InputType) => {
         }
     }
 
-    const addTask = () => {
-        let newTitle = title.trim();
-        if (newTitle !== "") {
-            props.callBack(newTitle);
-            setTitle("");
-        } else {
-            setError("Title is required");
-        }
-    }
 
 
     return (

@@ -1,19 +1,27 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-
-type TopInputType = {
-    addItem: (title: string )=> void
-
+type InputType = {
+    callBack: (title: string) => void
 }
+export const Input = (props: InputType) => {
 
-
-export const TopInput = (props: TopInputType) => {
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
+
+    const addTask = () => {
+        let newTitle = title.trim();
+        if (newTitle !== '') {
+            props.callBack(newTitle);
+            setTitle('');
+        } else {
+            setError('Title is required');
+        }
+    }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
+
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
         if (e.charCode === 13) {
@@ -21,15 +29,6 @@ export const TopInput = (props: TopInputType) => {
         }
     }
 
-    const addTask = () => {
-        let newTitle = title.trim();
-        if (newTitle !== '') {
-            props.addItem(newTitle);
-            setTitle('');
-        } else {
-            setError('Title is required');
-        }
-    }
 
     return (
         <div>
@@ -42,5 +41,4 @@ export const TopInput = (props: TopInputType) => {
             {error && <div className="error-message">{error}</div>}
         </div>
     )
-
 }

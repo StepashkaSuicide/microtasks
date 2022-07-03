@@ -4,6 +4,7 @@ type InputType = {
     callBack: (title: string) => void
 }
 export const Input = (props: InputType) => {
+
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
 
@@ -40,6 +41,4 @@ export const Input = (props: InputType) => {
             {error && <div className="error-message">{error}</div>}
         </div>
     )
-
-
 }

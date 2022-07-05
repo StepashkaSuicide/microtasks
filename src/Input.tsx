@@ -4,42 +4,35 @@ type InputType = {
     callBack: (title: string) => void
 }
 export const Input = (props: InputType) => {
-    let [title, setTitle] = useState('')
-    let [error, setError] = useState<string | null>(null)
+    const [title, setTitle] = useState<string>('')
+    const [error, setError] = useState<boolean>(false)
+
 
     const addTask = () => {
-        let newTitle = title.trim();
-        if (newTitle !== '') {
-            props.callBack(newTitle);
-            setTitle('');
+        const trimmedTitle = title.trim()
+        if (trimmedTitle) {
+            props.callBack(trimmedTitle)
         } else {
-            setError('Title is required');
+            setError(true)
         }
+        setTitle('')
     }
-
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onKeyDownAddTask = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask()
+    const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
+        error && setError(false)
     }
-
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
-        if (e.charCode === 13) {
-            addTask();
-        }
-    }
-
-
     return (
         <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? 'error' : ''}
+            <input
+                value={title}
+                onChange={onChangeSetTitle}
+                onKeyDown={onKeyDownAddTask}
+                className={error ? 'error' : ''}
             />
             <button onClick={addTask}>+</button>
-            {error && <div className="error-message">{error}</div>}
+            {error && <div style={{color: 'red'}}>Title is required!</div>}
         </div>
     )
-
 
 }

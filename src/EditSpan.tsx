@@ -1,8 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
+import TextField from '@material-ui/core/TextField';
 
 
 type EditSpanType = {
-    callBack: (newTitle: string)=> void
+    callBack: (newTitle: string) => void
     title: string
     isDone?: boolean
 }
@@ -30,7 +31,9 @@ export const EditSpan = (props: EditSpanType) => {
 
     return (
         edit
-            ? <input autoFocus onBlur={doubleClickHandler}  value={newTitle} onChange={onChangeHandler}/>
+            ? <TextField id="standard-basic" label={'edit'} autoFocus onBlur={doubleClickHandler} value={newTitle}
+                         onChange={onChangeHandler}/>
+            // <input autoFocus onBlur={doubleClickHandler}  value={newTitle} onChange={onChangeHandler}/>
             : <span onDoubleClick={doubleClickHandler}
                     className={props.isDone ? 'task isDone' : 'task'}>{props.title}</span>
     );

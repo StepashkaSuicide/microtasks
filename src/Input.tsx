@@ -1,4 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import {TextField} from '@material-ui/core';
 
 type InputType = {
     callBack: (title: string) => void
@@ -24,14 +27,19 @@ export const Input = (props: InputType) => {
     }
     return (
         <div>
-            <input
-                value={title}
-                onChange={onChangeSetTitle}
-                onKeyDown={onKeyDownAddTask}
-                className={error ? 'error' : ''}
+
+            <TextField value={title}
+                       onChange={onChangeSetTitle}
+                       onKeyDown={onKeyDownAddTask}
+                       size={'small'}
+                       label={'Title'}
+                       error={error}
+                       helperText={error && 'Title is required!'}
+                       id="filled-basic" variant="outlined"
             />
-            <button onClick={addTask}>+</button>
-            {error && <div style={{color: 'red'}}>Title is required!</div>}
+
+            <IconButton onClick={addTask}> <AddCircleIcon color={'primary'} fontSize={'small'}/></IconButton>
+
         </div>
     )
 

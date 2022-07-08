@@ -1,46 +1,44 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import {TextField} from '@material-ui/core';
 
 type InputType = {
+
     callBack: (title: string) => void
 }
-export const Input = (props: InputType) => {
-    const [title, setTitle] = useState<string>('')
-    const [error, setError] = useState<boolean>(false)
 
+
+
+export const Input = (props: InputType) => {
+    let [title, setTitle] = useState('')
+    let [error, setError] = useState<string | null>(null)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
+    }
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        setError(null);
+        if (e.charCode === 13) {
+            addTask();
+        }
+    }
 
     const addTask = () => {
-        const trimmedTitle = title.trim()
-        if (trimmedTitle) {
-            props.callBack(trimmedTitle)
+        let newTitle = title.trim();
+        if (newTitle !== '') {
+            props.callBack(newTitle);
+            setTitle('');
         } else {
-            setError(true)
+            setError('Title is required');
         }
-        setTitle('')
     }
-    const onKeyDownAddTask = (e: KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && addTask()
-    const onChangeSetTitle = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-        error && setError(false)
-    }
+
     return (
         <div>
-
-            <TextField value={title}
-                       onChange={onChangeSetTitle}
-                       onKeyDown={onKeyDownAddTask}
-                       size={'small'}
-                       label={'Title'}
-                       error={error}
-                       helperText={error && 'Title is required!'}
-                       id="filled-basic" variant="outlined"
+            <input value={title}
+                   onChange={onChangeHandler}
+                   onKeyPress={onKeyPressHandler}
+                   className={error ? 'error' : ''}
             />
-
-            <IconButton onClick={addTask}> <AddCircleIcon color={'primary'} fontSize={'small'}/></IconButton>
-
+            <button onClick={addTask}>+</button>
+            {error && <div className="error-message">{error}</div>}
         </div>
     )
-
 }

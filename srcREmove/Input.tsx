@@ -1,10 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
 type InputType = {
-
     callBack: (title: string) => void
 }
-export const Input = (props: InputType) => {
+export const Input: React.FC<InputType> = (props) => {
 
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
@@ -18,15 +17,18 @@ export const Input = (props: InputType) => {
             setError('Title is required');
         }
     }
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
+
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
         if (e.charCode === 13) {
             addTask();
         }
     }
+
     return (
         <div>
             <input value={title}
@@ -40,3 +42,5 @@ export const Input = (props: InputType) => {
     )
 
 }
+
+

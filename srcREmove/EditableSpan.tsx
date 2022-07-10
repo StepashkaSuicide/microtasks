@@ -1,11 +1,11 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-
+import React, {ChangeEvent, useState} from 'react';
 
 type EditableSpanType = {
     title: string
     callBack: (newTitle: string) => void
 }
-export const EditableSpan = (props: EditableSpanType) => {
+export const EditableSpan: React.FC<EditableSpanType> = (props) => {
+
 
     let [newTitle, setNewTitle] = useState(props.title)
     let [edit, setEdit] = useState(false)
@@ -13,22 +13,25 @@ export const EditableSpan = (props: EditableSpanType) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(e.currentTarget.value)
     }
-  const onDoubleClickHandler = ()=> {
-        setEdit(!edit)
-      addTask()
-  }
 
     const addTask = () => {
-        let title = newTitle.trim();
-        if (newTitle !== '') {
-            props.callBack(title);
+        let newTitleTrim = newTitle.trim();
+        if (newTitleTrim !== '') {
+            props.callBack(newTitleTrim);
             setNewTitle('');
         }
     }
 
+    const onDoubleClickHandler = () => {
+        setEdit(!edit)
+        addTask()
+    }
+
     return (
         edit
-            ? <input value={newTitle} onChange={onChangeHandler} onBlur={onDoubleClickHandler} autoFocus/>
+            ? <input autoFocus value={newTitle} onChange={onChangeHandler} onBlur={onDoubleClickHandler}/>
             : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
-    );
-};
+    )
+
+
+}

@@ -10,13 +10,10 @@ test.skip('correct todolist should be removed', () => {
         {id: todolistId1, title: "What to learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
-    //
-    // const endState = todolistsReducer(startState,
-    //     { type: 'REMOVE-TODOLIST', id: todolistId1})
+
+
 
     const endState = todolistsReducer(startState, removeTodolistAC(todolistId1))
-
-
 
     expect(endState.length).toBe(1);
     expect(endState[0].id).toBe(todolistId2);
@@ -34,8 +31,6 @@ test.skip('correct todolist should be added', () => {
         {id: todolistId2, title: "What to buy", filter: "all"}
     ]
 
-    // const endState = todolistsReducer(startState,
-    //     { type: 'ADD-TODOLIST', title: newTodolistTitle})
     const endState = todolistsReducer(startState, addTodolistAC(newTodolistTitle))
 
     expect(endState.length).toBe(3);

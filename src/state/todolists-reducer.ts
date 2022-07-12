@@ -1,9 +1,3 @@
-//
-// type todolistReducerType = {
-//
-// }
-
-
 import {FilterValuesType, TodolistType} from '../App';
 import {v1} from 'uuid';
 

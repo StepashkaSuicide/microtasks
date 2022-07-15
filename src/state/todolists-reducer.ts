@@ -22,8 +22,7 @@ export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) =
     }
 }
 
-
-
+//reducer lesson
 
 type tsarType =
     ReturnType<typeof changeTodolistTitleAC>

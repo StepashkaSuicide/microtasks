@@ -1,63 +1,82 @@
 import {FilterValuesType, TodolistType} from '../App';
 import {v1} from 'uuid';
 
-
-export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) => {
-    switch (action.type) {
-        case 'REMOVE-TODOLIST': {
-            return state.filter(f=> f.id!==action.payload.todolistId1)
-        }
-        case 'ADD-TODOLIST': {
-            let newTodolistId = v1();
-            let newTodolist = {id: newTodolistId, title: action.payload.newTodolistTitle, filter: 'all'};
-            return [...state, newTodolist]
-        }
-        case 'CHANGE-TODOLIST-TITLE':{
-            return state.map(t=> t.id===action.payload.todolistId2 ? {...t, title: action.payload.newTodolistTitle}:t)
-        }
-        case 'CHANGE-TODOLIST-FILTER':
-            return state.map(t=> t.id ===action.payload.todolistId2 ? {...t, filter: action.payload.newFilter}: t)
-        default:
-            return state
-    }
-}
-
-//reducer lesson
-
 type tsarType =
     ReturnType<typeof changeTodolistTitleAC>
     | ReturnType<typeof removeTodolistAC>
     | ReturnType<typeof addTodolistAC>
     | ReturnType<typeof changeTodolistFilterAC>
 
-export const removeTodolistAC = (todolistId1: string)=> {
-    return{
+export const removeTodolistAC = (todolistId1: string) => {
+    return {
         type: 'REMOVE-TODOLIST',
         payload: {todolistId1}
-    }as const
+    } as const
 }
-
-export const addTodolistAC = (newTodolistTitle: string)=> {
-    return{
+export const addTodolistAC = (newTodolistTitle: string) => {
+    return {
         type: 'ADD-TODOLIST',
         payload: {newTodolistTitle}
-    }as const
+    } as const
 }
 
-
-export const changeTodolistTitleAC = (todolistId2: string, newTodolistTitle: string)=> {
-    return{
+export const changeTodolistTitleAC = (todolistId2: string, newTodolistTitle: string) => {
+    return {
         type: 'CHANGE-TODOLIST-TITLE',
         payload: {todolistId2, newTodolistTitle}
-    }as const
+    } as const
 }
 
-export const changeTodolistFilterAC = (todolistId2: string, newFilter: FilterValuesType)=> {
-    return{
+export const changeTodolistFilterAC = (todolistId2: string, newFilter: FilterValuesType) => {
+    return {
         type: 'CHANGE-TODOLIST-FILTER',
         payload: {todolistId2, newFilter}
-    }as const
+    } as const
 }
+
+export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) => {
+    switch (action.type) {
+        case 'REMOVE-TODOLIST': {
+            return state.filter(f => f.id !== action.payload.todolistId1)
+        }
+        case 'ADD-TODOLIST': {
+            let newTodolistId = v1();
+            let newTodolist = {id: newTodolistId, title: action.payload.newTodolistTitle, filter: 'all'};
+            return [...state, newTodolist]
+        }
+        case 'CHANGE-TODOLIST-TITLE': {
+            return state.map(t => t.id === action.payload.todolistId2 ? {
+                ...t,
+                title: action.payload.newTodolistTitle
+            } : t)
+        }
+        case 'CHANGE-TODOLIST-FILTER':
+            return state.map(t => t.id === action.payload.todolistId2 ? {...t, filter: action.payload.newFilter} : t)
+        default:
+            return state
+    }
+}
+
+//state lesson
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

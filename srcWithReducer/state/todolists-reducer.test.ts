@@ -102,7 +102,7 @@ test('correct todolist should change its name', () => {
 
 
 
-// import {addTodolistAC, changeFilterAC, changeTodolistTitleAC, removeTodolistAC, todolistsReducer} from './todolists-reducer';
+// import {addTodolistAC, changeFilterAC, changeTodolistTitleAC, removeTodolistAC, todolistsReducer} from './todolists-state';
 // import {v1} from 'uuid';
 // import {FilterValuesType, TodolistType} from '../App';
 //

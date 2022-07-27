@@ -31,9 +31,6 @@ export function AppWithRedux() {
     const tasks = useSelector<AppRootStateType, TasksStateType>(state=>state.tasks)
     const dispatch = useDispatch()
 
-
-
-
     function removeTask(taskID: string, todolistId: string) {
         dispatch(removeTaskAC(taskID, todolistId))
     }
@@ -57,7 +54,6 @@ export function AppWithRedux() {
     const addTodolist = (title: string)=> {
         const action = addTodolistAC(title)
         dispatch(action)
-        // dispatch(action)
     }
     const editTodolist = (todolistId: string, newTitle: string)=> {
         dispatch(editTodolistAC(todolistId, newTitle ))

@@ -115,7 +115,7 @@ export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) =
 // // export const todolistsReducer = (state: Array<TodolistType>, action: tsarType)=> {
 // //     switch (action.type) {
 // //         case 'REMOVE-TODOLIST': {
-// //             return state.filter(f=> f.id!== action.payload.todolistId1)
+// //             return state.filter(f=> f.id!== action.payload.todolistId)
 // //         }
 // //         case 'ADD-TODOLIST': {
 // //                 let newTodolistId = v1();
@@ -123,10 +123,10 @@ export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) =
 // //             return [...state, newTodolist]
 // //         }
 // //         case 'CHANGE-TODOLIST-TITLE': {
-// //             return state.map(t=> t.id ===action.payload.todolistId2 ? {...t, title: action.payload.newTodolistTitle}: t)
+// //             return state.map(t=> t.id ===action.payload.todolistId ? {...t, title: action.payload.newTodolistTitle}: t)
 // //         }
 // //         case 'CHANGE-TODOLIST-FILTER':{
-// //             return state.map(f=> f.id===action.payload.todolistId2 ? {...f, filter: action.payload.newFilter}: f)
+// //             return state.map(f=> f.id===action.payload.todolistId ? {...f, filter: action.payload.newFilter}: f)
 // //         }
 // //
 // //
@@ -140,10 +140,10 @@ export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) =
 // //     | ReturnType<typeof changeTodolistTitleAC>
 // //
 // //
-// // export const removeTodolistAC = (todolistId1: string)=> {
+// // export const removeTodolistAC = (todolistId: string)=> {
 // //     return{
 // //         type: 'REMOVE-TODOLIST',
-// //         payload: {todolistId1}
+// //         payload: {todolistId}
 // //     }as const
 // // }
 // //
@@ -159,21 +159,21 @@ export const todolistsReducer = (state: Array<TodolistType>, action: tsarType) =
 // //
 // //
 // //
-// // export const changeTodolistTitleAC = (todolistId2: string, newTodolistTitle: string)=> {
+// // export const changeTodolistTitleAC = (todolistId: string, newTodolistTitle: string)=> {
 // //     return{
 // //         type: 'CHANGE-TODOLIST-TITLE',
 // //         payload: {
-// //             todolistId2, newTodolistTitle
+// //             todolistId, newTodolistTitle
 // //         }
 // //     }as const
 // // }
 // //
 // //
 // //
-// // export const changeFilterAC = (todolistId2: string, newFilter: FilterValuesType)=> {
+// // export const changeFilterAC = (todolistId: string, newFilter: FilterValuesType)=> {
 // //     return{
 // //         type: 'CHANGE-TODOLIST-FILTER',
-// //         payload: {todolistId2, newFilter}
+// //         payload: {todolistId, newFilter}
 // //     }as const
 // // }
 // //

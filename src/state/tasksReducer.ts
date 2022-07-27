@@ -8,7 +8,11 @@ export type ActionsType =
     | ReturnType<typeof addTaskAC>
     | ReturnType<typeof changeTaskStatusAC>
     | ReturnType<typeof addTodolistAC>
+    | ReturnType<typeof editTaskAC>
 
+
+
+const initialState: TasksStateType = {}
 
 export const removeTaskAC = (taskID: string, todolistID: string) => {
     return {
@@ -28,9 +32,15 @@ export const changeTaskStatusAC = (taskID: string, isDone: boolean, todolistID: 
         payload: {taskID, isDone, todolistID}
     } as const
 }
+export const editTaskAC = (todolistId: string, taskID: string, newTitle: string) => {
+    return {
+        type: 'edit_task',
+        payload: {todolistId, taskID, newTitle}
+    } as const
+}
 
 
-export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
+export const tasksReducer = (state=initialState, action: ActionsType): TasksStateType => {
     switch (action.type) {
         case 'remove_task':
             return {
@@ -54,12 +64,17 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType) => {
         case 'ADD_TODOLIST':
             return {
                 ...state,
-                [action.payload.todolistId]:[]
+                [action.payload.todolistId]: []
+            }
+        case 'edit_task':
+            return {
+                [action.payload.todolistId]: state[action.payload.todolistId].map(t => t.id === action.payload.taskID
+                    ? {...t, title: action.payload.newTitle} : t)
             }
 
-
         default:
-            throw new Error('I don\'t understand this type')
+           return  state
+        // throw new Error('I don\'t understand this type')
     }
 }
 

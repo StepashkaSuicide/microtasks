@@ -1,16 +1,9 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
-import {v1} from 'uuid';
 import {Input} from './InputXX';
-import {
-    addTodolistAC,
-    changeTodolistFilterAC,
-    editTodolistAC,
-    removeTodolistAC,
-    todolistsReducer
-} from './state/todolists-reducer';
-import {addTaskAC, changeTaskStatusAC, editTaskAC, removeTaskAC, tasksReducer} from './state/tasksReducer';
+import {addTodolistAC, changeTodolistFilterAC, editTodolistAC, removeTodolistAC} from './state/todolists-reducer';
+import {addTaskAC, changeTaskStatusAC, editTaskAC, removeTaskAC} from './state/tasksReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
 

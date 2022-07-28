@@ -85,8 +85,24 @@ export const todolistsReducer = (state=initialState, action: tsarType):Array<Tod
 
 
 
-
-
+// function superSum(a: number) {
+//     if(a <= 0 ) return 0
+//
+//     let _args: number[] = []
+//
+//     const carry = (...args: number[]) => {
+//         _args = [..._args, ...args]
+//         if(_args.length >= a){
+//             _args.length = a
+//             return _args.reduce((acc: any, number) => acc + number)
+//         }
+//         return carry
+//     }
+//
+//     return carry
+// }
+//
+//
 
 
 

@@ -43,4 +43,3 @@ export const Task1 = memo((
         </IconButton>
     </div>
 })
-
